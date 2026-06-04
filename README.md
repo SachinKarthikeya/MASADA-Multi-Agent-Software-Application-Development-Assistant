@@ -30,9 +30,9 @@ An efficient multi-agent system where if a user has a project idea but don't kno
 
 ## 🧰 Tech Stack
 
-**Frontend**: Streamlit
-**Backend Framework**: CrewAI
-**LLM**: Llama3.2:1b
+- **Frontend**: Streamlit
+- **Backend Framework**: CrewAI
+- **LLM**: Llama3.2:1b
 
 ## 📢 Future Enhancements
 
