@@ -36,6 +36,65 @@ reviewer_agent = Agent(
     allow_delegation = False,
     llm = llm
 )
+
+planning_task = Task(
+    description = """
+    Break down the following project idea into clear and strategic development steps:
+    {project_idea}
+    
+    Include the following in your breakdown:
+    1. Key deliverables
+    2. Features 
+    3. Required tools, technologies, and data sources
+    """,
+    expected_output = "A well-structured breakdown of the project idea into actionable development steps, including expected deliverables, features, tools, and technologies.",
+    agent = planner_agent
+)
+developing_task = Task(
+    description = """
+    Based on the planner's breakdown, develop the software application by generating:
+    1. Folder Structure
+    2. Core Sample Code
+    3. Key Modules
+
+    If the project can be built efficiently using simpler data sources, tools or technologies, prioritize those over more complex options. 
+    If the user has provided specific requirements or constraints, ensure that the developed software application adheres to those. If not, use simple yet efficient tools, technologies, and data sources to build the application.
+    """,
+    expected_output = "A fully developed software application that meets the defined requirements with clean, modular and production-ready code.",
+    agent = developer_agent
+)
+testing_task = Task(
+    description = """
+    Test the software application built by the developer to ensure it meets the defined requirements and quality standards. Identify:
+
+    1. Potential bugs or issues 
+    2. Edge Cases
+    """,
+    expected_output = "A comprehensive testing report that identifies any bugs, issues and edge cases.",
+    agent = tester_agent
+)
+reviewing_task = Task(
+    description = """
+    Based on the testing report and the developed software application, provide text-based feedback on the software application. Focus on:
+    
+    1. Readability
+    2. Performance
+    3. Security
+
+    DO NOT confuse your task with tester agent's task i.e., identifying bugs or perform testing. You are a code reviewer, not a tester.
+    """,
+    expected_output = "Effective text-based feedback on the software application, providing suggestions for improving performance, readability and security.",
+    agent = reviewer_agent
+)
+
+def assemble_crew():
+    tech_crew = Crew(
+        agents=[planner_agent, developer_agent, tester_agent, reviewer_agent],
+        tasks=[planning_task, developing_task, testing_task, reviewing_task],
+        process=Process.sequential
+    )
+    return tech_crew    llm = llm
+)
 deployer_agent = Agent(
     role = "Senior DevOps Engineer",
     goal = "Deploy the final software application to a production environment, ensuring a smooth and efficient deployment process while adhering to best practices for security and scalability",
