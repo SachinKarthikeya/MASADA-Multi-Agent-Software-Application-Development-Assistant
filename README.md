@@ -1,6 +1,6 @@
 # 🧑‍💻 MASADA - Multi-Agent Software Application Development Assistant
 
-An efficient multi-agent system where if a user has a project idea but don't know where to start from, our agents help them plan, code, test and review an initial version of their application from scratch. This helps developers and testers get the inital architecture, source code, testing strategies and improvement feedbacks and of the project they want to develop and test.
+An efficient multi-agent system where if a user has a project idea but don't know where to start from, our agents help them plan, code, test and review an initial version of their application from scratch. This helps developers and testers get the inital architecture, source code, testing strategies and improvement feedbacks of the project they want to develop and test.
 
 ## 🚀 Features
 
