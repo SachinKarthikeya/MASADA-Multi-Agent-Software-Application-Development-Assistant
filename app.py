@@ -24,14 +24,13 @@ if st.button("Start Development"):
             "Planner": result.tasks_output[0].raw,
             "Developer": result.tasks_output[1].raw,
             "Tester": result.tasks_output[2].raw,
-            "Reviewer": result.tasks_output[3].raw,
-            "Deployer": result.tasks_output[4].raw
+            "Reviewer": result.tasks_output[3].raw
         }
         st.success("Project Development Completed!")
             
         if st.session_state.outputs:
             st.subheader("Initial Project Development Results")
-            tab1, tab2, tab3, tab4, tab5 = st.tabs(["Planner", "Developer", "Tester", "Reviewer", "Deployer"])
+            tab1, tab2, tab3, tab4 = st.tabs(["Planner", "Developer", "Tester", "Reviewer"])
 
             with tab1:
                 st.markdown(st.session_state.outputs["Planner"])
@@ -41,8 +40,6 @@ if st.button("Start Development"):
                 st.markdown(st.session_state.outputs["Tester"])
             with tab4:
                 st.markdown(st.session_state.outputs["Reviewer"])
-            with tab5:
-                st.markdown(st.session_state.outputs["Deployer"])
 
             for role, content in st.session_state.outputs.items():
                 st.download_button(
